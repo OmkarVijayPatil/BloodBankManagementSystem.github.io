@@ -1,0 +1,84 @@
+<?php
+if(isset($_POST['register'])){
+    include('../includes/connection.php');
+    $query = "insert into donors values(null,'$_POST[name]','$_POST[email]','$_POST[password]',$_POST[mobile])";
+    $query_result = mysqli_query($connection,$query);
+    if($query_result){
+        echo "<script type='text/javascript'>
+              alert('Donor registered successfully...');
+            window.location.href = 'login.php';  
+          </script>";
+    }
+    else{
+        echo "<script type='text/javascript'>
+              alert('Error...Plz try again.');
+              window.location.href = 'login.php';
+          </script>";
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Bootstrap files -->
+    <link rel="stylesheet" href="../bootstrap/css//bootstrap.min.css">
+    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <!-- External CSS file -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body style= "background: linear-gradient(to right, rgb(218, 210, 153), rgb(176, 218, 185));">
+<nav class="navbar navbar-expand-lg navbar-dark " style="background: linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61));">
+        <a class="navbar-brand" href="index.php">Blood Bank Management System</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="../index.php"style="border-radius: 4px; font-size: 16px;">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../admin/login.php"style="border-radius: 4px; font-size: 16px;">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../donor/login.php"style="border-radius: 4px; font-size: 16px;">Donor</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../patient/login.php"style="border-radius: 4px; font-size: 16px;">Patient</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 5%;">
+            <div class="col-md-4 mx-auto" id="login-container">
+                <center><h4>Register Page</h4></center><hr></hr>
+                <form action="" method="POST">
+                <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" name="name" placeholder="Enter your name" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" name="email" placeholder="Enter email ID" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                    </div><br>
+                    <div class="form-group">
+                        <label for="mobile">Mobile</label>
+                        <input type="text" class="form-control" name="mobile" placeholder="Mobile No." required>
+                    </div><br>
+                    <input type="submit" class="btn " value="Register" name="register"style="background: linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61)); border: linear-gradient(to right, rgb(0, 176, 155), rgb(150, 201, 61));">
+                    <strong>Already registered? </strong><a href="login.php">Login here</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
